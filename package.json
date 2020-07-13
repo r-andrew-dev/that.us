@@ -69,6 +69,8 @@
     "yup": "~0.28.2"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "debug": "^4.1.1",
     "sirv-cli": "^1.0.3"
   },
   "jest": {
