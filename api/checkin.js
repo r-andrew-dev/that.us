@@ -63,5 +63,6 @@ export default async function checkin(req, res) {
   if (result.status === 200 && record[0].id !== result.data.ticket_id)
     return res.status(502).json({ message: 'checking at tito failed' });
 
-  return res.status(200).json(result.data);
+  // return res.status(200).json(result.data);
+  return res.status(200).json(record[0]);
 }
