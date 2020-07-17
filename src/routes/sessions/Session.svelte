@@ -3,7 +3,7 @@
   import { FacebookLoader } from 'svelte-content-loader';
   import { fade } from 'svelte/transition';
 
-  import Nav from '../../components/nav/Top.svelte';
+  import Nav from '../../components/nav/interiorNav/Top.svelte';
   import { ModalError } from '../../elements';
   import StackedLayout from '../../elements/layouts/StackedLayout.svelte';
   import SessionDetails from './SessionDetails.svelte';
@@ -34,10 +34,17 @@
                   isPublic                  
                 }
               }
+              favoritedBy {
+                id
+                firstName
+                lastName
+                profileImage
+              }
             }
           }
         }
-    }`,
+      }
+    `,
 
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI', sessionId },
     requestPolicy: 'cache-and-network',
@@ -55,12 +62,12 @@
   <div slot="body">
     {#if $sessionQuery.fetching}
       <div class="flex items-center justify-center">
-        <FacebookLoader />
+        <FacebookLoader uniqueKey="loading" />
       </div>
     {:else if $sessionQuery.error || !$sessionQuery.data}
       <ModalError
         title="No Session Found"
-        text="I'm sorry we wern't able to find the session you requested."
+        text="I'm sorry we weren't able to find the session you requested."
         action="{{ title: 'Return to Sessions', href: '/sessions' }}"
       />
     {:else}

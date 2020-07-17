@@ -5,7 +5,7 @@
   import { ActionHeader, LinkButton } from '../../elements';
   import StackedLayout from '../../elements/layouts/StackedLayout.svelte';
 
-  import Nav from '../../components/nav/Top.svelte';
+  import Nav from '../../components/nav/interiorNav/Top.svelte';
   import { isAuthenticated, thatProfile } from '../../utilities/security.js';
 
   export let router;
@@ -101,6 +101,7 @@
 </script>
 
 <svelte:head>
+  <title>Join * THAT.us</title>
   <script src="https://meet.jit.si/external_api.js" on:load="{initJitsi}">
 
   </script>
