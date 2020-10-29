@@ -3,7 +3,7 @@ import { Machine, assign } from 'xstate';
 import { uniqBy } from 'lodash';
 
 import partnersApi from '../../../dataSources/api.that.tech/partner/queries';
-import pagingMachine from '../../../machines/paging';
+import createPagingConfig from '../../../machines/paging';
 
 function createServices() {
   const { get, getNext } = partnersApi(getClient());
@@ -32,6 +32,8 @@ function createServices() {
           uniqBy([...context.items, ...event.data.members], i => i.id),
         cursor: (_, { data }) => data.cursor,
       }),
+
+      loadedAllSuccess: () => {}, // stub action for now.
     },
   };
 }
@@ -39,7 +41,7 @@ function createServices() {
 function create() {
   const services = createServices();
 
-  return Machine({ ...pagingMachine }, { ...services });
+  return Machine({ ...createPagingConfig() }, { ...services });
 }
 
 export default create;
